@@ -1,16 +1,16 @@
-
-public class Mahasiswa14{
+public class Mahasiswa14 {
     public String nim;
     public String nama;
-    public String kelas;
-    public float ipk;
+    public String prodi;
 
-    public void cetakInfo() {
-            System.out.println("NIM     : "+ nim);
-            System.out.println("Nama    : "+ nama);
-            System.out.println("Kelas   : "+ kelas);
-            System.out.println("IPK     : "+ ipk);
-            System.out.println("------------------------------------");
+    public Mahasiswa14(String nim, String nama, String prodi) {
+        this.nim = nim;
+        this.nama = nama;
+        this.prodi = prodi;
+    }
+    void tampilInformasi() {
+        System.out.println("NIM: " + nim);
+        System.out.println("Nama: " + nama);
+        System.out.println("Prodi: " + prodi);
     }
 }
-
