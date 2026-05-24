@@ -1,48 +1,66 @@
-
 import java.util.Scanner;
 
 public class MahasiswaDemo14 {
     public static void main(String[] args) {
+        StackTugasMahasiswa14 stack = new StackTugasMahasiswa14(5);
         Scanner hikmal14 = new Scanner(System.in);
-        System.out.print("Masukkan jumlah mahasiswa: ");
-        int jumMhs = Integer.parseInt(hikmal14.nextLine());
-        MahasiswaBerprestasi14 list = new MahasiswaBerprestasi14(jumMhs);
+        int pilih;
 
-        for (int i = 0; i < jumMhs; i++) {
-            System.out.println("Masukkan Data Mahasiswa ke-" + (i + 1));
-            System.out.print("NIM    : ");
-            String nim = hikmal14.nextLine();
-            System.out.print("Nama   : ");
-            String nama = hikmal14.nextLine();
-            System.out.print("Kelas  : ");
-            String kelas = hikmal14.nextLine();
-            System.out.print("IPK    :");
-            String ip = hikmal14.nextLine();
-            Double ipk = Double.parseDouble(ip);
-            System.out.println("----------------------------------");
-            list.tambah(new Mahasiswa14(nim, nama, kelas, ipk));
-        }
-            System.out.println("Data Mahasiswa Sebelum Sorting: ");
-            list.tampil();
-            System.out.println("---------------------------------------------------");
-            System.out.println("Pencarian Data");
-            System.out.println("---------------------------------------------------");
-            System.out.println("Masukkan ipk mahasiswa yang dicari: ");
-            System.out.print("IPK: ");
-            double cari = Double.parseDouble(hikmal14.nextLine());
-            System.out.println("----------------------------------");
-            System.out.println("Menggunakan Binary Search");
-            System.out.println("----------------------------------");
-            int posisi2 = list.findBinarySearch(cari,0, jumMhs-1);
-            int pss2= (int)posisi2;
-            list.tampilPosisi(cari, pss2);
-            list.tampilDataSearch(cari, pss2);
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1. Mengumpulkan Tugas");
+            System.out.println("2. Menilai Tugas");
+            System.out.println("3. Melihat Tugas Teratas");
+            System.out.println("4. Melihat Daftar Tugas");
+            System.out.println("5. Melihat Tugas Terbawah (Pertama)");
+            System.out.println("6. Hitung Jumlah tugas Saat Ini");
+            System.out.print("Pilih: ");
+            pilih = hikmal14.nextInt();
+            hikmal14.nextLine();
 
-
-            System.out.println("\nMenggunakan Sequential Searching");
-            double posisi =list.sequentialSearching(cari);
-            int pss= (int)posisi;
-            list.tampilPosisi(cari, pss);
-            list.tampilDataSearch(cari, pss);
+            switch (pilih) {
+                case 1:
+                    System.out.print("Nama: ");
+                    String nama = hikmal14.nextLine();
+                    System.out.print("NIM: ");
+                    String nim = hikmal14.nextLine();
+                    System.out.print("Kelas: ");
+                    String kelas = hikmal14.nextLine();
+                    Mahasiswa14 mhs = new Mahasiswa14(nama, nim, kelas);
+                    stack.push(new Mahasiswa14(nama, nim, kelas));
+                    System.out.printf("Tugas %s berhasil dikumpulkan\n", mhs.nama);
+                    break;
+                case 2:
+                    Mahasiswa14 dinilai = stack.pop();
+                    if (dinilai != null) {
+                        System.out.println("Menilai tugas dari " + dinilai.nama + ": ");
+                        System.out.print("Masukkan nilai (0-100): ");
+                        int nilai = hikmal14.nextInt();
+                        dinilai.tugasDinilai(nilai);
+                        System.out.printf("Nilai Tugas %s adalah %d\n", dinilai.nama, nilai);
+                        String biner = stack.konversiDesimalKeBiner(nilai);
+                        System.out.println("Nilai Biner Tugas: " + biner);
+                    }
+                    break;
+                case 3:
+                    Mahasiswa14 lihat = stack.peek();
+                    if (lihat != null) {
+                        System.out.println("Tugas teratas: " + lihat.nama);
+                    }
+                    break;
+                case 4:
+                    System.out.println("Daftar Tugas (Teratas ke Terbawah):");
+                    stack.print();
+                    break;
+                case 5: // Implementasi Pertanyaan No. 4
+                    Mahasiswa14 bawah = stack.peekBottom();
+                    if (bawah != null)
+                        System.out.println("Tugas pertama kali dikumpulkan oleh: " + bawah.nama);
+                    break;
+                case 6: // Implementasi Pertanyaan No. 5
+                    System.out.println("Jumlah tugas dalam stack saat ini: " + stack.getJumlah());
+                    break;
+            }
+        } while (pilih >= 1 && pilih <= 6);
     }
 }
