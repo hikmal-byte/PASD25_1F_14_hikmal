@@ -2,16 +2,22 @@ public class Mahasiswa14 {
     String nim;
     String nama;
     String kelas;
-    int nilai;
+    double ipk;
 
-    Mahasiswa14(String nama, String nim, String kelas) {
-        this.nama = nama;
-        this.nim = nim;
-        this.kelas = kelas;
-        this.nilai = -1;
+    public Mahasiswa14() {
     }
 
-    void tugasDinilai(int nilai) {
-        this.nilai = nilai;
+    public Mahasiswa14(String nim, String nama, String kelas, double ipk) {
+        this.nim = nim;
+        this.nama = nama;
+        this.kelas = kelas;
+        this.ipk = ipk;
+    }
+
+    public void tampilkanInformasi() {
+        System.out.println(nama);
+        System.out.println(nim);
+        System.out.println(kelas);
+        System.out.println(ipk);
     }
 }
