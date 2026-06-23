@@ -1,11 +1,13 @@
 public class Node14 {
-    Mahasiswa14 data;
-    Node14 prev;
-    Node14 next;
+    Mahasiswa14 mahasiswa;
+    Node14 left, right;
 
-    public Node14(Mahasiswa14 data) {
-        this.data = data;
-        this.prev = null;
-        this.next = null;
+    public Node14() {
+    }
+
+    public Node14(Mahasiswa14 mahasiswa) {
+        this.mahasiswa = mahasiswa;
+        this.left = null;
+        this.right = null;
     }
 }
